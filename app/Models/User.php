@@ -4,12 +4,20 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Category;
+use App\Models\Brand;
+use App\Models\PackagingType;
+use App\Models\PackagingSize;
+use App\Models\Product;
+use App\Models\Price;
+use App\Models\ProductDisplay;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +26,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'phone_number',
+        'whatsapp_number',
+        'is_active',
+        'username',
         'password',
     ];
 
@@ -43,5 +54,33 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function categories() {
+        return $this->hasMany(Category::class);
+    }
+
+    public function brands() {
+        return $this->hasMany(Brand::class);
+    }
+
+    public function packagingTypes() {
+        return $this->hasMany(PackagingType::class);
+    }
+
+    public function packagingSizes() {
+        return $this->hasMany(PackagingSize::class);
+    }
+
+    public function products() {
+        return $this->hasMany(Product::class);
+    }
+
+    public function prices() {
+        return $this->hasMany(related: Price::class);
+    }
+
+    public function productDisplays() {
+        return $this->hasMany(ProductDisplay::class);
     }
 }
