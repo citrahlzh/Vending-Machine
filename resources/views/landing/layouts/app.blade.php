@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    @include('partials.header')
+    @include('landing.partials.header')
 
     @stack('style')
 </head>
 <body>
     @yield('content')
 
-    @include('partials.script')
+    @include('landing.partials.script')
 
     @stack('script')
 </body>
 <footer>
-    @include('partials.footer')
+    @include('landing.partials.footer')
 </footer>
 </html>

@@ -1,4 +1,4 @@
-@extends('layouts.app', [
+@extends('landing.layouts.app', [
     'title' => 'Vending Machine',
 ])
 
@@ -87,7 +87,7 @@
             <div class="mt-[12px] text-center text-[12px] text-[#6b5a84]">Scan untuk membayar</div>
             <div class="mt-[20px] flex gap-[10px]">
                 <button id="btn-cancel-pay" class="w-full h-[40px] rounded-full border border-[#d6c7ee] text-[#5c2a94] font-semibold">Batal</button>
-                {{-- <button id="btn-success" class="w-full h-[40px] rounded-full bg-[#5c2a94] text-white font-semibold">Sudah Bayar</button> --}}
+                <button id="btn-success" class="w-full h-[40px] rounded-full bg-[#5c2a94] text-white font-semibold">Sudah Bayar</button>
             </div>
         </div>
     </div>
