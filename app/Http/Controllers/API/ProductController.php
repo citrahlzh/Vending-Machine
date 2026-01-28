@@ -24,8 +24,13 @@ class ProductController extends Controller
             'packaging_type_id' => 'required|exists:packaging_types,id',
             'packaging_size_id' => 'required|exists:packaging_sizes,id',
             'product_name' => 'required|string|max:255',
-            'image_path' => 'nullable|string|max:255',
+            'image_url' => 'required|file|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        $image_url = null;
+        if ($request->hasFile('image_url')) {
+            $image_url = $request->file('image_url')->store('products', 'public');
+        }
 
         $product = Product::create([
             // 'user_id' => auth()->id(),
@@ -35,7 +40,7 @@ class ProductController extends Controller
             'packaging_type_id' => $validator['packaging_type_id'],
             'packaging_size_id' => $validator['packaging_size_id'],
             'product_name' => $validator['product_name'],
-            'image_path' => $validator['image_path'],
+            'image_url' => $image_url,
         ]);
 
         return response()->json([
@@ -58,17 +63,26 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validator = $request->validate([
+        $validated = $request->validate([
             'category_id' => 'sometimes|required|exists:categories,id',
             'brand_id' => 'sometimes|required|exists:brands,id',
             'packaging_type_id' => 'sometimes|required|exists:packaging_types,id',
             'packaging_size_id' => 'sometimes|required|exists:packaging_sizes,id',
             'product_name' => 'sometimes|required|string|max:255',
-            'image_path' => 'sometimes|nullable|string|max:255',
+            'image_url' => 'sometimes|file|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $product = Product::findOrFail($id);
-        $product->update($validator);
+
+        if ($request->hasFile('image_url')) {
+            $image_url = $request->file('image_url')->store('products', 'public');
+            $validated['image_url'] = $image_url;
+        } else {
+            unset($validated['image_url']);
+        }
+
+        $product->fill($validated);
+        $product->save();
 
         return response()->json([
             'data' => new ProductResource($product),

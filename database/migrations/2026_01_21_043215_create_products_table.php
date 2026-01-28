@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('packaging_type_id')->constrained('packaging_types');
             $table->foreignId('packaging_size_id')->constrained('packaging_sizes');
             $table->string('product_name');
-            $table->string('image_path');
+            $table->string('image_url');
             $table->timestamps();
             $table->softDeletes();
         });

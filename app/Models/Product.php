@@ -24,7 +24,7 @@ class Product extends Model
         'packaging_type_id',
         'packaging_size_id',
         'product_name',
-        'image_path'
+        'image_url'
     ];
 
     public function user() {
