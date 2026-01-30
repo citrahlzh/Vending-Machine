@@ -2,6 +2,55 @@
     'title' => 'Vending Machine',
 ])
 
+@push('style')
+    <style>
+        .carousel-viewport {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: max-content;
+            gap: 14px;
+            will-change: transform;
+        }
+
+        .carousel-track.is-dragging {
+            cursor: grabbing;
+        }
+
+        .carousel-viewport::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel-viewport::-webkit-scrollbar-thumb {
+            background: rgba(92, 42, 148, 0.25);
+            border-radius: 999px;
+        }
+
+        .animated-gradient {
+            background: linear-gradient(270deg, #5c2a94, #a76ade, #5c2a94, #a76ade);
+            background-size: 100% 100%;
+            animation: gradientAnimation 5s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+@endpush
+
 @section('content')
     <div class="min-h-screen bg-gradient-to-b from-[#f7f3ff] via-white to-[#f3f0ff]">
         <div id="default-carousel"
@@ -13,7 +62,7 @@
                     <div class="hidden duration-700 ease-in-out bg-cover shadow-[0_24px_60px_rgba(89,42,155,0.18)]"
                         data-carousel-item>
                         <img src="{{ asset('assets/images/ads/ads.jpg') }}"
-                            class="absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 w-full h-[220px] sm:h-[220x] lg:h-[360px]"
+                            class="absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 w-full h-[220px] sm:h-[220px] lg:h-[360px]"
                             alt="...">
                     </div>
                 @endfor
@@ -21,28 +70,74 @@
         </div>
 
         <div class="px-6 sm:px-10 lg:px-[72px] pb-[60px] lg:pb-[80px]">
-            <div class="flex grid-cols-1 lg:grid-cols-[1fr_360px] gap-[18px] lg:gap-[32px] items-start">
-                <div class="grid grid-cols-2 sm:grid-cols-3 gap-[16px] sm:gap-[16px]">
-                    @for ($i = 0; $i < 12; $i++)
-                        <div
-                            class="bg-white rounded-[15px] p-[14px] border border-[#ede8f6] shadow-[0_10px_24px_rgba(41,18,72,0.08)]">
-                            <div class="bg-cover h-[120px] w-[100px] rounded-[15px] bg-gradient-to-b from-[#f1ecff] to-[#fff] border border-[#efe6ff] flex items-center justify-center"
-                                style="background-image: url('{{ asset('assets/images/products/fruittea_blackcurrant.png') }}');">
-                                {{-- <img src="{{ asset('assets/images/products/fruittea_blackcurrant.png') }}" alt="" class="object-contain"> --}}
-                            </div>
-                            <div class="mt-[12px]">
-                                <div class="text-[13px] font-semibold text-[#2b1a43]">Fruit Tea Blackcurrant</div>
-                                <div class="text-[12px] font-semibold text-[#6d5a88] mt-[2px]">Rp 5.000</div>
-                                <div class="mt-[10px] flex items-center justify-between">
-                                    <button id="min-qty"
-                                        class="h-[28px] w-[28px] rounded-full border border-[#ceb9ee] text-[#5c2a94]">-</button>
-                                    <div id="qty" class="text-[12px] font-semibold text-[#2b1a43]">0</div>
-                                    <button id="plus-qty"
-                                        class="h-[28px] w-[28px] rounded-full bg-[#5c2a94] text-white">+</button>
+            <div class="flex gap-[18px] lg:gap-[32px] items-start">
+                <div class="carousel-viewport w-full">
+                    <div class="carousel-track">
+                        @for ($i = 0; $i < 12; $i++)
+                            <div
+                                class="bg-white rounded-[15px] p-[10px] border border-[#c0bacb] w-[130px] my-2">
+                                <div class="bg-cover h-[120px] w-full rounded-[15px] bg-gradient-to-b from-[#f1ecff] to-[#fff] border border-[#e1dee6] flex items-center justify-center"
+                                    style="background-image: url('{{ asset('assets/images/products/fruittea_blackcurrant.png') }}');">
+                                    {{-- <img src="{{ asset('assets/images/products/fruittea_blackcurrant.png') }}" alt="" class="object-contain"> --}}
+                                </div>
+                                <div class="mt-[12px]">
+                                    <div class="text-[13px] font-semibold text-[#2b1a43]">Fruit Tea Blackcurrant</div>
+                                    <div class="text-[12px] font-semibold text-[#6d5a88] mt-[2px]">Rp 5.000</div>
+                                    <div class="mt-[10px] flex items-center justify-between">
+                                        <button id="min-qty"
+                                            class="h-[28px] w-[28px] rounded-full border border-[#ceb9ee] text-[#5c2a94]">-</button>
+                                        <div id="qty" class="text-[12px] font-semibold text-[#2b1a43]">0</div>
+                                        <button id="plus-qty"
+                                            class="h-[28px] w-[28px] rounded-full bg-[#5c2a94] text-white">+</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endfor
+                        @endfor
+                    </div>
+                    <div class="carousel-track">
+                        @for ($i = 0; $i < 12; $i++)
+                            <div
+                                class="bg-white rounded-[15px] p-[10px] border border-[#c0bacb] w-[130px] my-2">
+                                <div class="bg-cover h-[120px] w-full rounded-[15px] bg-gradient-to-b from-[#f1ecff] to-[#fff] border border-[#e1dee6] flex items-center justify-center"
+                                    style="background-image: url('{{ asset('assets/images/products/fruittea_blackcurrant.png') }}');">
+                                    {{-- <img src="{{ asset('assets/images/products/fruittea_blackcurrant.png') }}" alt="" class="object-contain"> --}}
+                                </div>
+                                <div class="mt-[12px]">
+                                    <div class="text-[13px] font-semibold text-[#2b1a43]">Fruit Tea Blackcurrant</div>
+                                    <div class="text-[12px] font-semibold text-[#6d5a88] mt-[2px]">Rp 5.000</div>
+                                    <div class="mt-[10px] flex items-center justify-between">
+                                        <button id="min-qty"
+                                            class="h-[28px] w-[28px] rounded-full border border-[#ceb9ee] text-[#5c2a94]">-</button>
+                                        <div id="qty" class="text-[12px] font-semibold text-[#2b1a43]">0</div>
+                                        <button id="plus-qty"
+                                            class="h-[28px] w-[28px] rounded-full bg-[#5c2a94] text-white">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endfor
+                    </div>
+                    <div class="carousel-track">
+                        @for ($i = 0; $i < 12; $i++)
+                            <div
+                                class="bg-white rounded-[15px] p-[10px] border border-[#c0bacb] w-[130px] my-2">
+                                <div class="bg-cover h-[120px] w-full rounded-[15px] bg-gradient-to-b from-[#f1ecff] to-[#fff] border border-[#e1dee6] flex items-center justify-center"
+                                    style="background-image: url('{{ asset('assets/images/products/fruittea_blackcurrant.png') }}');">
+                                    {{-- <img src="{{ asset('assets/images/products/fruittea_blackcurrant.png') }}" alt="" class="object-contain"> --}}
+                                </div>
+                                <div class="mt-[12px]">
+                                    <div class="text-[13px] font-semibold text-[#2b1a43]">Fruit Tea Blackcurrant</div>
+                                    <div class="text-[12px] font-semibold text-[#6d5a88] mt-[2px]">Rp 5.000</div>
+                                    <div class="mt-[10px] flex items-center justify-between">
+                                        <button id="min-qty"
+                                            class="h-[28px] w-[28px] rounded-full border border-[#ceb9ee] text-[#5c2a94]">-</button>
+                                        <div id="qty" class="text-[12px] font-semibold text-[#2b1a43]">0</div>
+                                        <button id="plus-qty"
+                                            class="h-[28px] w-[28px] rounded-full bg-[#5c2a94] text-white">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endfor
+                    </div>
                 </div>
 
                 <div
@@ -83,16 +178,6 @@
                         Bayar Sekarang
                     </button>
                 </div>
-            </div>
-        </div>
-
-        <div
-            class="bg-gradient-to-r from-[#8b5ad6] via-[#a673e4] to-[#c78ae6] text-white px-6 sm:px-10 lg:px-[72px] py-[20px] lg:py-[24px]">
-            <div class="flex items-center justify-between">
-                <div>
-                    <img src="{{ asset('assets/images/logo/logo_x9_white.webp') }}" alt="" class="w-10">
-                </div>
-                <div class="text-[16px] font-semibold">PT Manusia Solusi Terbaik</div>
             </div>
         </div>
     </div>
@@ -157,6 +242,87 @@
         btnCloseSuccess?.addEventListener('click', () => {
             modalSuccess?.classList.add('hidden');
             modalSuccess?.classList.remove('flex');
+        });
+    </script>
+
+    <script>
+        const viewports = document.querySelectorAll('.carousel-viewport');
+
+        viewports.forEach((viewport) => {
+            const track = viewport.querySelector('.carousel-track');
+            if (!track) return;
+
+            const cards = [...track.children];
+            for (const card of cards) {
+                track.appendChild(card.cloneNode(true));
+            }
+
+            const resetThreshold = track.scrollWidth / 2;
+            let isDown = false;
+            let startX = 0;
+            let startScrollLeft = 0;
+            let isPaused = false;
+            let resumeTimer = null;
+            const speed = 0.6;
+
+            const resumeLater = () => {
+                if (resumeTimer) clearTimeout(resumeTimer);
+                resumeTimer = setTimeout(() => {
+                    isPaused = false;
+                }, 500);
+            };
+
+            const loopScroll = () => {
+                if (!isPaused) {
+                    viewport.scrollLeft += speed;
+                }
+
+                if (viewport.scrollLeft >= resetThreshold) {
+                    viewport.scrollLeft -= resetThreshold;
+                } else if (viewport.scrollLeft <= 0) {
+                    viewport.scrollLeft += resetThreshold;
+                }
+
+                requestAnimationFrame(loopScroll);
+            };
+
+            requestAnimationFrame(loopScroll);
+
+            viewport.addEventListener('pointerdown', (event) => {
+                isDown = true;
+                startX = event.pageX;
+                startScrollLeft = viewport.scrollLeft;
+                isPaused = true;
+                track.classList.add('is-dragging');
+                viewport.setPointerCapture(event.pointerId);
+            });
+
+            viewport.addEventListener('pointermove', (event) => {
+                if (!isDown) return;
+                const walk = startX - event.pageX;
+                viewport.scrollLeft = startScrollLeft + walk;
+            });
+
+            const endDrag = () => {
+                isDown = false;
+                track.classList.remove('is-dragging');
+                resumeLater();
+            };
+
+            viewport.addEventListener('pointerup', endDrag);
+            viewport.addEventListener('pointerleave', endDrag);
+            viewport.addEventListener('mouseenter', () => {
+                isPaused = true;
+            });
+            viewport.addEventListener('mouseleave', () => {
+                resumeLater();
+            });
+            viewport.addEventListener('wheel', () => {
+                isPaused = true;
+                resumeLater();
+            }, {
+                passive: true
+            });
         });
     </script>
 @endpush
