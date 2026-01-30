@@ -71,12 +71,16 @@
 
         <div class="px-6 sm:px-6 lg:px-[72px] pb-[60px] lg:pb-[80px]">
             <div class="flex gap-[18px] lg:gap-[32px] items-start">
-                <div class="carousel-viewport w-full">
-                    <div id="products-track" class="carousel-track"></div>
+                <div id="products-carousel" class="flex-1 min-w-0 space-y-[16px]">
+                    @for ($i = 0; $i < 3; $i++)
+                        <div class="carousel-viewport w-full">
+                            <div class="carousel-track" data-carousel-track></div>
+                        </div>
+                    @endfor
                 </div>
 
                 <div
-                    class="bg-white rounded-[15px] border border-[#eee5f9] shadow-[0_12px_30px_rgba(60,34,97,0.12)] p-[24px] lg:sticky lg:top-[24px]] sm:w-[400px]">
+                    class="bg-white rounded-[15px] border border-[#eee5f9] shadow-[0_12px_30px_rgba(60,34,97,0.12)] p-[24px] lg:sticky lg:top-[24px] w-[340px] shrink-0">
                     <div class="text-[18px] font-semibold text-[#2a1a42] text-center">Detail Pesanan</div>
                     <div class="mt-[16px] border-t border-[#efe6ff] pt-[16px]">
                         <div
@@ -166,178 +170,113 @@
 @push('script')
     <script>
         const products = [
-            // Tea / Drinks
+            // Drinks
+            {
+                id: 'bear-brand',
+                name: 'Bear Brand',
+                price: 7000,
+                stock: 10,
+                image: '{{ asset('assets/images/products/bear-brand.webp') }}'
+            },
+            {
+                id: 'cimory-yogurt-blueberry',
+                name: 'Cimory Yogurt Blueberry',
+                price: 9000,
+                stock: 9,
+                image: '{{ asset('assets/images/products/cimory-yogurt-blueberry.webp') }}'
+            },
+            {
+                id: 'cimory-yogurt-mixed-fruit',
+                name: 'Cimory Yogurt Mixed Fruit',
+                price: 9000,
+                stock: 8,
+                image: '{{ asset('assets/images/products/cimory-yogurt-mixed-fruit.webp') }}'
+            },
+            {
+                id: 'fruit-tea-apple',
+                name: 'Fruit Tea Apple',
+                price: 6000,
+                stock: 12,
+                image: '{{ asset('assets/images/products/fruit-tea-apple.webp') }}'
+            },
             {
                 id: 'fruit-tea-blackcurrant',
                 name: 'Fruit Tea Blackcurrant',
-                price: 5000,
-                stock: 12,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
+                price: 6500,
+                stock: 10,
+                image: '{{ asset('assets/images/products/fruit-tea-blackcurrant.webp') }}'
             },
             {
                 id: 'fruit-tea-freeze',
                 name: 'Fruit Tea Freeze',
                 price: 7000,
-                stock: 9,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
-            },
-            {
-                id: 'fruit-tea-apel',
-                name: 'Fruit Tea Apel',
-                price: 4500,
                 stock: 7,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
+                image: '{{ asset('assets/images/products/fruit-tea-freeze.jpg') }}'
             },
             {
-                id: 'fruit-tea-lemon',
-                name: 'Fruit Tea Lemon',
-                price: 6000,
-                stock: 10,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
-            },
-            {
-                id: 'fruit-tea-peach',
-                name: 'Fruit Tea Peach',
+                id: 'fruit-tea-markisa',
+                name: 'Fruit Tea Markisa',
                 price: 6500,
-                stock: 8,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
-            },
-            {
-                id: 'fruit-tea-lychee',
-                name: 'Fruit Tea Lychee',
-                price: 5500,
                 stock: 11,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
-            },
-            {
-                id: 'fruit-tea-mango',
-                name: 'Fruit Tea Mango',
-                price: 6000,
-                stock: 0,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
+                image: '{{ asset('assets/images/products/fruit-tea-markisa.webp') }}'
             },
             {
                 id: 'fruit-tea-strawberry',
                 name: 'Fruit Tea Strawberry',
                 price: 6500,
                 stock: 6,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
-            },
-
-            // Coffee
-            {
-                id: 'coffee-latte',
-                name: 'Coffee Latte',
-                price: 8000,
-                stock: 10,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
+                image: '{{ asset('assets/images/products/fruit-tea-strawberry.webp') }}'
             },
             {
-                id: 'coffee-americano',
-                name: 'Coffee Americano',
-                price: 7500,
-                stock: 9,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
-            },
-            {
-                id: 'coffee-mocha',
-                name: 'Coffee Mocha',
-                price: 9000,
-                stock: 7,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
-            },
-            {
-                id: 'coffee-cappuccino',
-                name: 'Coffee Cappuccino',
-                price: 9000,
-                stock: 8,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
-            },
-            {
-                id: 'coffee-vanilla',
-                name: 'Coffee Vanilla',
-                price: 8500,
-                stock: 6,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
-            },
-            {
-                id: 'coffee-hazelnut',
-                name: 'Coffee Hazelnut',
-                price: 8500,
-                stock: 5,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
-            },
-            {
-                id: 'coffee-caramel',
-                name: 'Coffee Caramel',
-                price: 9000,
-                stock: 4,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
-            },
-            {
-                id: 'coffee-black',
-                name: 'Coffee Black',
-                price: 7000,
+                id: 'ichi-ocha-green-tea',
+                name: 'Ichi Ocha Green Tea',
+                price: 6000,
                 stock: 12,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
+                image: '{{ asset('assets/images/products/ichi-ocha-green-tea.webp') }}'
+            },
+            {
+                id: 'ultra-milk-cokelat',
+                name: 'Ultra Milk Cokelat',
+                price: 6500,
+                stock: 8,
+                image: '{{ asset('assets/images/products/ultra-milk-cokelat.webp') }}'
             },
 
             // Snacks
             {
-                id: 'snack-chips-bbq',
-                name: 'Chips BBQ',
-                price: 6000,
-                stock: 15,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
+                id: 'gemez-enaak',
+                name: 'Gemez Enaak',
+                price: 5000,
+                stock: 14,
+                image: '{{ asset('assets/images/products/gemez-enaak.webp') }}'
             },
             {
-                id: 'snack-chips-seaweed',
-                name: 'Chips Seaweed',
+                id: 'kanzler-bakso-hot',
+                name: 'Kanzler Bakso Hot',
+                price: 12000,
+                stock: 6,
+                image: '{{ asset('assets/images/products/kanzler-bakso-hot.webp') }}'
+            },
+            {
+                id: 'kanzler-sosis-hot',
+                name: 'Kanzler Sosis Hot',
+                price: 12000,
+                stock: 5,
+                image: '{{ asset('assets/images/products/kanzler-sosis-hot.webp') }}'
+            },
+            {
+                id: 'kanzler-sosis-original',
+                name: 'Kanzler Sosis Original',
+                price: 12000,
+                stock: 7,
+                image: '{{ asset('assets/images/products/kanzler-sosis-original.webp') }}'
+            },
+            {
+                id: 'tango-wafer-cokelat',
+                name: 'Tango Wafer Cokelat',
                 price: 6000,
                 stock: 13,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
-            },
-            {
-                id: 'snack-wafer-choco',
-                name: 'Wafer Choco',
-                price: 5000,
-                stock: 20,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
-            },
-            {
-                id: 'snack-wafer-vanilla',
-                name: 'Wafer Vanilla',
-                price: 5000,
-                stock: 18,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
-            },
-            {
-                id: 'snack-biscuit-butter',
-                name: 'Biscuit Butter',
-                price: 4500,
-                stock: 16,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
-            },
-            {
-                id: 'snack-biscuit-choco',
-                name: 'Biscuit Choco',
-                price: 4500,
-                stock: 0,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
-            },
-            {
-                id: 'snack-nuts-honey',
-                name: 'Nuts Honey',
-                price: 7000,
-                stock: 9,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
-            },
-            {
-                id: 'snack-nuts-salted',
-                name: 'Nuts Salted',
-                price: 7000,
-                stock: 8,
-                image: '{{ asset('assets/images/products/fruittea_blackcurrant.png') }}'
+                image: '{{ asset('assets/images/products/tango-wafer-cokelat.jpg') }}'
             },
         ];
 
@@ -346,7 +285,7 @@
         const cartKey = 'vm_demo_cart';
         const cart = JSON.parse(localStorage.getItem(cartKey) || '{}');
 
-        const productsTrack = document.getElementById('products-track');
+        const productsCarousel = document.getElementById('products-carousel');
         const cartLines = document.getElementById('cart-lines');
         const cartTotal = document.getElementById('cart-total');
         const btnPay = document.getElementById('btn-pay');
@@ -365,19 +304,31 @@
         };
 
         const renderProducts = () => {
-            if (!productsTrack) return;
-            productsTrack.innerHTML = '';
-            products.forEach((product) => {
-                const qty = cart[product.id]?.qty || 0;
-                const isOutOfStock = product.stock <= 0;
-                const isSelected = qty > 0;
-                const isMaxed = qty >= product.stock;
-                const card = document.createElement('div');
-                card.className =
-                    `bg-white rounded-[16px] p-[10px] w-[140px] my-2 transition duration-200 ${
-                    isSelected ? 'border-2 border-[#5c2a94] shadow-[0_10px_24px_rgba(92,42,148,0.18)]' : 'border border-[#e1d7f0] shadow-[0_6px_18px_rgba(60,34,97,0.08)]'
-                } ${isOutOfStock ? 'opacity-70 grayscale' : 'hover:-translate-y-1 hover:shadow-[0_14px_28px_rgba(92,42,148,0.16)]'}`;
-                card.innerHTML = `
+            if (!productsCarousel) return;
+            const tracks = [...productsCarousel.querySelectorAll('[data-carousel-track]')];
+            if (!tracks.length) return;
+            const rows = Array.from({
+                length: tracks.length
+            }, () => []);
+            products.forEach((product, index) => {
+                rows[index % rows.length].push(product);
+            });
+
+            rows.forEach((rowItems, rowIndex) => {
+                const track = tracks[rowIndex];
+                if (!track) return;
+                track.innerHTML = '';
+                rowItems.forEach((product) => {
+                    const qty = cart[product.id]?.qty || 0;
+                    const isOutOfStock = product.stock <= 0;
+                    const isSelected = qty > 0;
+                    const isMaxed = qty >= product.stock;
+                    const card = document.createElement('div');
+                    card.className =
+                        `bg-white rounded-[16px] p-[10px] w-[140px] my-2 transition duration-200 ${
+                        isSelected ? 'border-2 border-[#5c2a94] shadow-[0_10px_24px_rgba(92,42,148,0.18)]' : 'border border-[#e1d7f0] shadow-[0_6px_18px_rgba(60,34,97,0.08)]'
+                    } ${isOutOfStock ? 'opacity-70 grayscale' : 'hover:-translate-y-1 hover:shadow-[0_14px_28px_rgba(92,42,148,0.16)]'}`;
+                    card.innerHTML = `
                     <div class="bg-cover h-[120px] w-full rounded-[14px] bg-gradient-to-b from-[#f4efff] via-[#f9f6ff] to-white border border-[#ece4f7] flex items-center justify-center relative overflow-hidden"
                         style="background-image: url('${product.image}');">
                         ${isOutOfStock ? '<div class="absolute inset-0 bg-white/70 flex items-center justify-center text-[12px] font-semibold text-[#c0392b]">HABIS</div>' : ''}
@@ -395,7 +346,13 @@
                         </div>
                     </div>
                 `;
-                productsTrack.appendChild(card);
+                    track.appendChild(card);
+                });
+
+                const baseCards = [...track.children];
+                baseCards.forEach((card) => {
+                    track.appendChild(card.cloneNode(true));
+                });
             });
         };
 
@@ -472,7 +429,7 @@
             modal?.classList.remove('flex');
         };
 
-        productsTrack?.addEventListener('click', (event) => {
+        productsCarousel?.addEventListener('click', (event) => {
             const target = event.target;
             const wrapper = target?.closest('[data-product]');
             const productId = wrapper?.getAttribute('data-product');
@@ -528,12 +485,6 @@
             const track = viewport.querySelector('.carousel-track');
             if (!track) return;
 
-            const cards = [...track.children];
-            for (const card of cards) {
-                track.appendChild(card.cloneNode(true));
-            }
-
-            const resetThreshold = track.scrollWidth / 2;
             let isDown = false;
             let startX = 0;
             let startScrollLeft = 0;
@@ -563,6 +514,7 @@
             };
 
             const loopScroll = () => {
+                const resetThreshold = track.scrollWidth / 2;
                 if (!isPaused) {
                     viewport.scrollLeft += speed * direction;
                 }
