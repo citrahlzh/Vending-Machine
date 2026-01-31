@@ -531,6 +531,9 @@
             requestAnimationFrame(loopScroll);
 
             viewport.addEventListener('pointerdown', (event) => {
+                if (event.target?.closest('.btn-plus, .btn-min')) {
+                    return;
+                }
                 isDown = true;
                 startX = event.pageX;
                 startScrollLeft = viewport.scrollLeft;
