@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('image_url');
+            $table->enum('status', ['active', 'inactive'])->default('inactive');
             $table->timestamps();
             $table->softDeletes();
         });

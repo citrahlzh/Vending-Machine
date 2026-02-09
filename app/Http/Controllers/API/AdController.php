@@ -21,6 +21,7 @@ class AdController extends Controller
         $validator = $request->validate([
             'title' => 'required|string|max:255',
             'image_url' => 'required|file|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'status' => 'sometimes|in:active,inactive',
         ]);
 
         $image_url = null;
@@ -31,6 +32,7 @@ class AdController extends Controller
         $ad = Ad::create([
             'title' => $validator['title'],
             'image_url' => $image_url,
+            'status' => $validator['status'] ?? 'inactive',
         ]);
 
         return response()->json([
@@ -56,6 +58,7 @@ class AdController extends Controller
         $validator = $request->validate([
             'title' => 'sometimes|required|string|max:255',
             'image_url' => 'sometimes|file|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'status' => 'sometimes|in:active,inactive',
         ]);
 
         $ad = Ad::findOrFail($id);

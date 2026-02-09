@@ -13,5 +13,6 @@ class Ad extends Model
     protected $fillable = [
         'title',
         'image_url',
+        'status'
     ];
 }
