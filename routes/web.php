@@ -1,9 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Landing\LandingController;
 
-Route::get('/', [LandingController::class, 'index'])->name('landing.index');
+//menambahkan Semua route auth
+require __DIR__ . '/auth.php';
+
+// menambahkan Semua route landing
+require __DIR__ . '/landing.php';
+
+// menambahkan Semua route dashboard
+require __DIR__ . '/dashboard.php';
 
 // Route get image from storage
 Route::get('/image/{path}', function ($path) {

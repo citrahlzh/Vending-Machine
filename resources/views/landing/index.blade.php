@@ -128,7 +128,7 @@
         <div
             class="bg-white w-full max-w-[420px] rounded-[20px] p-[24px] text-center shadow-[0_24px_60px_rgba(0,0,0,0.25)]">
             <div class="mx-auto h-[72px] w-[72px] rounded-full bg-[#dcffe7] flex items-center justify-center">
-                <img src="{{ asset('assets/icons/check-mark.png') }}" class="w-[40px] h-auto" alt="success">
+                <img src="{{ asset('assets/icons/landing/check-mark.png') }}" class="w-[40px] h-auto" alt="success">
             </div>
             <div class="mt-[12px] text-[18px] font-semibold text-[#2b1a43]">Pembayaran Berhasil</div>
             <div class="mt-[6px] text-[12px] text-[#6b5a84]">Silakan ambil produk Anda.</div>
@@ -141,7 +141,7 @@
         <div
             class="bg-white w-full max-w-[420px] rounded-[20px] p-[24px] text-center shadow-[0_24px_60px_rgba(0,0,0,0.25)]">
             <div class="mx-auto h-[72px] w-[72px] rounded-full bg-[#ffe6e6] flex items-center justify-center">
-                <img src="{{ asset('assets/icons/exclamation-mark.png') }}" alt="fail">
+                <img src="{{ asset('assets/icons/landing/exclamation-mark.png') }}" alt="fail">
             </div>
             <div class="mt-[12px] text-[18px] font-semibold text-[#2b1a43]">Pembayaran Gagal</div>
             <div id="fail-message" class="mt-[6px] text-[12px] text-[#6b5a84]">Coba ulangi pemesanan.</div>

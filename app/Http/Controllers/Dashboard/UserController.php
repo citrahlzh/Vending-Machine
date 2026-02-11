@@ -5,25 +5,25 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class UserController extends Controller
 {
     public function index()
     {
-        return view('dashboard.products.index');
+        return view('dashboard.users.index');
     }
 
     public function create()
     {
-        return view('dashboard.products.create');
+        return view('dashboard.users.create');
     }
 
     public function edit($id)
     {
-        return view('dashboard.products.edit', compact('id'));
+        return view('dashboard.users.edit', compact('id'));
     }
 
     public function show($id)
     {
-        return view('dashboard.products.show', compact('id'));
-    }   
+        return view('dashboard.users.show', compact('id'));
+    }
 }

@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class CellController extends Controller
 {
-    //
+    public function index()
+    {
+        return view('dashboard.master-data.cells.index');
+    }
 }

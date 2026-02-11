@@ -41,7 +41,7 @@ class UserController extends Controller
             'message' => 'User created successfully.',
         ], 201);
     }
-
+    
     public function show($id)
     {
         $user = User::findOrFail($id);

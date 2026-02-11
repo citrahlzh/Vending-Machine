@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    //z
+    public function index()
+    {
+        return view('dashboard.master-data.categories.index');
+    }
 }

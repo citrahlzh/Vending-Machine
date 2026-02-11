@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    @include('landing.partials.header')
+    <head>
+        {{-- Header --}}
+        @include("dashboard.partials.header")
 
-    @stack('style')
-</head>
-<body>
-    @include('landing.partials.sidebar')
+        {{-- Additional Style --}}
+        @stack("style")
+    </head>
 
-    @yield('content')
+    <body>
+        <div class="flex h-screen w-full">
+            {{-- Sidebar --}}
+            @include("dashboard.partials.sidebar")
 
-    @include('landing.partials.script')
+            {{-- Main Content --}}
+            <main class="my-1 flex-1 overflow-y-auto rounded-l-lg bg-[#F7F3FF] pb-2 pt-2 transition duration-500 ease-in-out">
+                @yield("content")
+            </main>
+        </div>
 
-    @stack('script')
-</body>
-<footer>
-    @include('landing.partials.footer')
-</footer>
+        {{-- Script --}}
+        @include("dashboard.partials.script")
+
+        {{-- Additional Script --}}
+        @stack("script")
+    </body>
 </html>
