@@ -36,7 +36,7 @@ class DashboardController extends Controller
 
         $chartLabels = [];
         $chartValues = [];
-        for ($hour = 8; $hour <= 16; $hour++) {
+        for ($hour = 0; $hour <= 23; $hour++) {
             $chartLabels[] = sprintf('%02d:00', $hour);
             $chartValues[] = (int) ($hourlyRows[$hour] ?? 0);
         }

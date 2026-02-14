@@ -110,7 +110,7 @@
     .dashboard-datatable-wrapper .dataTables_paginate .paginate_button.current {
         background: #5A2F7E !important;
         color: #ffffff !important;
-        width: 40px;
+        /* width: 40px; */
     }
 
     .dashboard-datatable-wrapper .dataTables_info {

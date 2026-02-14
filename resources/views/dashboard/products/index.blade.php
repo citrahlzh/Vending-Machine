@@ -27,8 +27,8 @@
                             <th class="whitespace-nowrap">Produk</th>
                             <th class="whitespace-nowrap">Kategori</th>
                             <th class="whitespace-nowrap">Merek</th>
-                            <th class="whitespace-nowrap">Jenis Kemasan</th>
-                            <th class="whitespace-nowrap">Ukuran Kemasan</th>
+                            <th class="">Jenis Kemasan</th>
+                            <th class="">Ukuran Kemasan</th>
                             <th class="whitespace-nowrap">Dibuat Oleh</th>
                             <th class="text-center whitespace-nowrap">Action</th>
                         </tr>
@@ -37,7 +37,7 @@
                         @foreach ($products as $product)
                             <tr data-product-id="{{ $product->id }}" data-product-name="{{ e($product->product_name) }}">
                                 <td class="text-center font-semibold whitespace-nowrap">{{ $loop->iteration }}</td>
-                                <td class="whitespace-nowrap min-w-[240px]">
+                                <td class="min-w-[240px]">
                                     <div class="flex items-center gap-2">
                                         <img src="{{ asset('storage/' . $product->image_url) }}" alt="{{ $product->product_name }}"
                                             class="h-8 w-8 rounded-md object-cover">
