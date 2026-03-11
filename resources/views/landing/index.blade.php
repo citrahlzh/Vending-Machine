@@ -168,7 +168,7 @@
                         <div class="mt-[10px] rounded-[10px] bg-gradient-to-br from-[#fbf8ff] to-[#f2eaff] px-[12px] py-[10px] flex justify-between align-middle">
                             <div>
                                 <div class="text-[11px] font-semibold uppercase tracking-wide text-[#7e69a3]">Telepon</div>
-                                <div class="text-[14px] font-semibold text-[#2b1a43]">{{ $callPhoneDisplay }}</div>
+                                <div class="text-[14px] font-semibold text-[#2b1a43]">{{ setting('call_center_number') }}</div>
                             </div>
                             <div class="flex items-center">
                                 <img src="{{ asset('assets/icons/landing/phone.svg') }}" alt="" class="h-[25px]">
@@ -177,7 +177,7 @@
                         <div class="mt-[10px] rounded-[10px] bg-gradient-to-br from-[#fbf8ff] to-[#f2eaff] px-[12px] py-[10px] flex justify-between align-middle">
                             <div>
                                 <div class="text-[11px] font-semibold uppercase tracking-wide text-[#7e69a3]">Whatsapp</div>
-                                <div class="text-[14px] font-semibold text-[#2b1a43]">{{ $callWaDisplay }}</div>
+                                <div class="text-[14px] font-semibold text-[#2b1a43]">{{ setting('whatsapp_number') }}</div>
                             </div>
                             <div class="flex items-center">
                                 <img src="{{ asset('assets/icons/landing/whatsapp.svg') }}" alt="" class="h-[25px]">
